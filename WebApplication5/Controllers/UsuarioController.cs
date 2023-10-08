@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using APIBomberos.Clases;
+using APIBomberos.Respuestas;
 
 namespace APIBomberos.Controllers
 {
-
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("Usuario")]
     public class UsuarioController : Controller
     {
         [HttpPost("AgregarUsuario")]
@@ -29,5 +29,31 @@ namespace APIBomberos.Controllers
             return this.Content(JsonSerializer.Serialize(estado.EstadoUsuario()), "application/json", System.Text.Encoding.UTF8);
 
         }
+
+        [HttpGet("Listausurios")]
+        public ActionResult<object> listaUsus()
+        {
+            return this.Content(new Clsgetusu().listausarios(), "application/json", System.Text.Encoding.UTF8);
+
+        }
+
+        [HttpGet("ListausuriosAlum")]
+        public ActionResult<object> listaUsuari()
+        {
+            return this.Content(new Clsgetusu().listausariosAlum(), "application/json", System.Text.Encoding.UTF8);
+
+        }
+
+
+        [HttpGet("ListausuriosIns")]
+        public ActionResult<object> listaUsuar()
+        {
+            return this.Content(new Clsgetusu().listausariosIns(), "application/json", System.Text.Encoding.UTF8);
+
+        }
+
+
+
+
     }
 }

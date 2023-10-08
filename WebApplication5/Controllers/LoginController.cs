@@ -4,8 +4,8 @@ using APIBomberos.Clases;
 
 namespace APIBomberos.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("Login")]
     public class LoginController : Controller
     {
         [HttpPost("IniciarSesionadim")]
@@ -28,7 +28,7 @@ namespace APIBomberos.Controllers
             return this.Content(JsonSerializer.Serialize(login.iniciarsesionalum()), "application/json", System.Text.Encoding.UTF8);
         }
 
-        [HttpPut("ReiniciarContra")]
+        [HttpPost("ReiniciarContra")]
         public ActionResult<object> reincia([FromBody] ClsReinicio login)
         {
             return this.Content(JsonSerializer.Serialize(login.reiniciarcontra()), "application/json", System.Text.Encoding.UTF8);

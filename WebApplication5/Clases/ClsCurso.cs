@@ -1,30 +1,26 @@
-﻿using System.Data.SqlClient;
-using System.Data;
-using APIBomberos.Clases.Conexión;
-using System.Collections.Generic;
+﻿using APIBomberos.Clases.Conexión;
 using APIBomberos.Respuestas;
-using static APIBomberos.Respuestas.ClsRespuesta;
-using System;
+using System.Data.SqlClient;
+using System.Data;
+using System.Runtime.Intrinsics.Arm;
 
 namespace APIBomberos.Clases
 {
-    public class ClsUsuario
+    public class ClsCurso
     {
-
         public string tipoperacion { get; set; }
-        public int idusu { get; set; }
-        public int tipousu { get; set; }
+        public int idcurso { get; set; }
         public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string correo { get; set; }
-        public string dpi { get; set; }
-        public string contraseña { get; set; }
+        public string descripcion { get; set; }
+        public string fechaini { get; set; }
+        public string fechafin { get; set; }
+
+        public ClsCurso() { }
 
 
 
-        public ClsUsuario() { }
 
-        public ClsRespuesta AgregarUsuario()
+        public ClsRespuesta AgregarCurso()
         {
             ClsRespuesta respuesta = new ClsRespuesta();
             try
@@ -33,15 +29,13 @@ namespace APIBomberos.Clases
                 {
                     SqlDataAdapter da = new SqlDataAdapter();
                     conn.Open();
-                    da.SelectCommand = new SqlCommand("[USP_SET_USUARIO]", conn);
+                    da.SelectCommand = new SqlCommand("[USP_SET_CURSO]", conn);
                     da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "C");
-                    da.SelectCommand.Parameters.AddWithValue("@Idusuario", null);
-                    da.SelectCommand.Parameters.AddWithValue("@IdTipoUsuario ", tipousu);
+                    da.SelectCommand.Parameters.AddWithValue("@IdCurso", null);
                     da.SelectCommand.Parameters.AddWithValue("@Nombre", nombre);
-                    da.SelectCommand.Parameters.AddWithValue("@Apellido", apellido);
-                    da.SelectCommand.Parameters.AddWithValue("@Correo ", correo);
-                    da.SelectCommand.Parameters.AddWithValue("@DPI", dpi);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", contraseña);
+                    da.SelectCommand.Parameters.AddWithValue("@Descripcion", descripcion);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_inicio", fechaini);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_fin", fechafin);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
@@ -68,9 +62,11 @@ namespace APIBomberos.Clases
                 return respuesta;
             }
 
+
         }
 
-        public ClsRespuesta ActualizarUsuario()
+
+        public ClsRespuesta ActualizarCurso()
         {
             ClsRespuesta respuesta = new ClsRespuesta();
             try
@@ -79,15 +75,13 @@ namespace APIBomberos.Clases
                 {
                     SqlDataAdapter da = new SqlDataAdapter();
                     conn.Open();
-                    da.SelectCommand = new SqlCommand("[USP_SET_USUARIO]", conn);
+                    da.SelectCommand = new SqlCommand("[USP_SET_CURSO]", conn);
                     da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "U");
-                    da.SelectCommand.Parameters.AddWithValue("@Idusuario", idusu);
-                    da.SelectCommand.Parameters.AddWithValue("@IdTipoUsuario ", null);
+                    da.SelectCommand.Parameters.AddWithValue("@IdCurso", idcurso);
                     da.SelectCommand.Parameters.AddWithValue("@Nombre", nombre);
-                    da.SelectCommand.Parameters.AddWithValue("@Apellido", apellido);
-                    da.SelectCommand.Parameters.AddWithValue("@Correo ", correo);
-                    da.SelectCommand.Parameters.AddWithValue("@DPI", dpi);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", null);
+                    da.SelectCommand.Parameters.AddWithValue("@Descripcion", descripcion);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_inicio", fechaini);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_fin", fechafin);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
@@ -117,7 +111,7 @@ namespace APIBomberos.Clases
         }
 
 
-        public ClsRespuesta EstadoUsuario()
+        public ClsRespuesta EstadoCurso()
         {
             ClsRespuesta respuesta = new ClsRespuesta();
             try
@@ -126,15 +120,13 @@ namespace APIBomberos.Clases
                 {
                     SqlDataAdapter da = new SqlDataAdapter();
                     conn.Open();
-                    da.SelectCommand = new SqlCommand("[USP_SET_USUARIO]", conn);
+                    da.SelectCommand = new SqlCommand("[USP_SET_CURSO]", conn);
                     da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "D");
-                    da.SelectCommand.Parameters.AddWithValue("@Idusuario", idusu);
-                    da.SelectCommand.Parameters.AddWithValue("@IdTipoUsuario ", null);
+                    da.SelectCommand.Parameters.AddWithValue("@IdCurso", idcurso);
                     da.SelectCommand.Parameters.AddWithValue("@Nombre", null);
-                    da.SelectCommand.Parameters.AddWithValue("@Apellido", null);
-                    da.SelectCommand.Parameters.AddWithValue("@Correo ", null);
-                    da.SelectCommand.Parameters.AddWithValue("@DPI", null);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", null);
+                    da.SelectCommand.Parameters.AddWithValue("@Descripcion", null);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_inicio", null);
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha_fin", null);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
@@ -164,7 +156,8 @@ namespace APIBomberos.Clases
         }
 
 
-        public string listaUsuariocurso()
+
+        public string listaCurso()
         {
             string Result = "";
             using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
@@ -174,7 +167,7 @@ namespace APIBomberos.Clases
                 DataTable dt = new DataTable();
                 da.SelectCommand = new SqlCommand("[USP_GET_CURSO]", conn);
                 da.SelectCommand.CommandTimeout = 0;
-                da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "U");
+                da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "C");
 
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.Fill(dt);
@@ -189,28 +182,10 @@ namespace APIBomberos.Clases
 
 
     }
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

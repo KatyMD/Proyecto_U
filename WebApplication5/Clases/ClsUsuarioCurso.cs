@@ -104,7 +104,35 @@ namespace APIBomberos.Clases
 
     }
 
-}
+
+
+
+
+
+
+        public string listaCursoTema()
+        {
+            string Result = "";
+            using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
+            {
+                conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                da.SelectCommand = new SqlCommand("[USP_GET_CURSO]", conn);
+                da.SelectCommand.CommandTimeout = 0;
+                da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "T");
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                Result = Clsjsontablcs.toJson(dt);
+                conn.Dispose();
+                conn.Close();
+            }
+            return Result;
+        }
+
+
+    }
 
 
 
