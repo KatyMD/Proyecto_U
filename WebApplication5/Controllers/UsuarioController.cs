@@ -37,20 +37,15 @@ namespace APIBomberos.Controllers
 
         }
 
-        [HttpGet("ListausuriosAlum")]
+        [HttpGet("ListaCursoUsuario")]
         public ActionResult<object> listaUsuari()
         {
-            return this.Content(new Clsgetusu().listausariosAlum(), "application/json", System.Text.Encoding.UTF8);
+            return this.Content(new Clsgetusu().listausarioscurso(), "application/json", System.Text.Encoding.UTF8);
 
         }
 
 
-        [HttpGet("ListausuriosIns")]
-        public ActionResult<object> listaUsuar()
-        {
-            return this.Content(new Clsgetusu().listausariosIns(), "application/json", System.Text.Encoding.UTF8);
 
-        }
 
 
 
