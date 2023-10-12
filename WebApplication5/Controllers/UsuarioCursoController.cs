@@ -34,7 +34,12 @@ namespace APIBomberos.Controllers
 
         }
 
+        [HttpGet("CursoUsuario")]
+        public ActionResult<object> list([FromQuery] string idusuario)
+        {
 
+            return this.Content(new ClsUsuarioCurso().Cursousuario(idusuario), "application/json", System.Text.Encoding.UTF8);
+        }
 
 
 
