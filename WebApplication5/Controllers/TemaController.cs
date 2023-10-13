@@ -34,7 +34,7 @@ namespace APIBomberos.Controllers
             return this.Content(new Clstemas().listaCursotemas(idusuario, idtema), "application/json", System.Text.Encoding.UTF8);
         }
 
-        [HttpGet("UsuarioTemas")]
+        [HttpGet("TemasUsuario")]
         public ActionResult<object> lista([FromQuery] string idusuario)
         {
 
