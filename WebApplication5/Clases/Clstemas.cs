@@ -78,7 +78,27 @@ namespace APIBomberos.Clases
             return Result;
         }
 
-
+        public string listausuariotemas(string idusuario)
+        {
+            string Result = "";
+            using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
+            {
+                conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                da.SelectCommand = new SqlCommand("[USP_GET_TEMA_UNIDAD]", conn);
+                da.SelectCommand.CommandTimeout = 0;
+                da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "C");
+                da.SelectCommand.Parameters.AddWithValue("@idusario", idusuario);
+                da.SelectCommand.Parameters.AddWithValue("@idtema", null);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                Result = Clsjsontablcs.toJson(dt);
+                conn.Dispose();
+                conn.Close();
+            }
+            return Result;
+        }
 
 
 
