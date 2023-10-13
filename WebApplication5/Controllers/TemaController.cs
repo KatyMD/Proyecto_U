@@ -20,19 +20,21 @@ namespace APIBomberos.Controllers
 
         }
 
-        [HttpGet("ContenidoTemas")]
-        public ActionResult<object> list([FromQuery] string idusuario)
-        {
-
-            return this.Content(new Clstemas().Contenidotema(idusuario), "application/json", System.Text.Encoding.UTF8);
-        }
-
-        [HttpGet("UsuarioTemas")]
-        public ActionResult<object> list([FromQuery] string idusuario, string idtema)
+        [HttpGet("TemasExamen")]
+        public ActionResult<object> listas([FromQuery] string idusuario, string idtema)
         {
 
             return this.Content(new Clstemas().listaCursotemas(idusuario, idtema), "application/json", System.Text.Encoding.UTF8);
+        } 
+
+        [HttpGet("ContenidoTema")]
+        public ActionResult<object> list([FromQuery] string idusuario, string idtema)
+        {
+
+            return this.Content(new Clstemas().listatems(idusuario, idtema), "application/json", System.Text.Encoding.UTF8);
         }
+
+   
 
         [HttpGet("TemasUsuario")]
         public ActionResult<object> lista([FromQuery] string idusuario)
