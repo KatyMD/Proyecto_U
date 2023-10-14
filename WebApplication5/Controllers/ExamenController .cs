@@ -9,10 +9,10 @@ namespace APIBomberos.Controllers
     public class ExamenController : Controller
     {
         [HttpGet("MostrarExamen")]
-        public ActionResult<object> list([FromQuery] string usuario)
+        public ActionResult<object> list([FromQuery] string usuario, string idtema)
         {
 
-            return this.Content(new ClsExamen().MostrarExamen(usuario), "application/json", System.Text.Encoding.UTF8);
+            return this.Content(new ClsExamen().MostrarExamen(usuario, idtema), "application/json", System.Text.Encoding.UTF8);
         }
     }
 }

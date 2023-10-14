@@ -21,10 +21,10 @@ namespace APIBomberos.Controllers
         }
 
         [HttpGet("TemasExamen")]
-        public ActionResult<object> listas([FromQuery] string idusuario, string idtema)
+        public ActionResult<object> listas([FromQuery] string idusuario)
         {
 
-            return this.Content(new Clstemas().listaCursotemas(idusuario, idtema), "application/json", System.Text.Encoding.UTF8);
+            return this.Content(new Clstemas().listaCursotemas(idusuario), "application/json", System.Text.Encoding.UTF8);
         } 
 
         [HttpGet("ContenidoTema")]

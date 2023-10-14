@@ -33,7 +33,7 @@ namespace APIBomberos.Clases
             return Result;
         }
 
-        public string listaCursotemas(string idusuario, string idtema)
+        public string listaCursotemas(string idusuario)
         {
             string Result = "";
             using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
@@ -45,7 +45,7 @@ namespace APIBomberos.Clases
                 da.SelectCommand.CommandTimeout = 0;
                 da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "U");
                 da.SelectCommand.Parameters.AddWithValue("@idusario", idusuario);
-                da.SelectCommand.Parameters.AddWithValue("@idtema", idtema);
+                da.SelectCommand.Parameters.AddWithValue("@idtema", null);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.Fill(dt);
                 Result = Clsjsontablcs.toJson(dt);
