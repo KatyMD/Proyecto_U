@@ -18,9 +18,9 @@ namespace APIBomberos.Clases
 
         }
 
-        public ClsRespuesta iniciarsesionadmin()
+        public ClsRespuestalog iniciarsesionadmin()
         {
-            ClsRespuesta respuesta = new ClsRespuesta();
+            ClsRespuestalog respuesta = new ClsRespuestalog();
             try
              {
                 using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
@@ -40,6 +40,13 @@ namespace APIBomberos.Clases
                         {
                             respuesta.Estado = read.GetBoolean(0);
                             respuesta.Mensaje = read.GetString(1);
+
+                            if (read.FieldCount > 2)
+                            {
+                                respuesta.IDUsuario = read.GetInt32(2);
+                            }
+
+
                         }
                         catch (Exception ex)
                         {
@@ -62,9 +69,9 @@ namespace APIBomberos.Clases
 
 
 
-        public ClsRespuesta iniciarsesionins()
+        public ClsRespuestalog iniciarsesionins()
         {
-            ClsRespuesta respuesta = new ClsRespuesta();
+            ClsRespuestalog respuesta = new ClsRespuestalog();
             try
             {
                 using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
@@ -84,6 +91,10 @@ namespace APIBomberos.Clases
                         {
                             respuesta.Estado = read.GetBoolean(0);
                             respuesta.Mensaje = read.GetString(1);
+                            if (read.FieldCount > 2)
+                            {
+                                respuesta.IDUsuario = read.GetInt32(2);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -103,9 +114,9 @@ namespace APIBomberos.Clases
 
         }
 
-        public ClsRespuesta iniciarsesionalum()
+        public ClsRespuestalog iniciarsesionalum()
         {
-            ClsRespuesta respuesta = new ClsRespuesta();
+            ClsRespuestalog respuesta = new ClsRespuestalog();
             try
             {
                 using (SqlConnection conn = new SqlConnection(ClsConexion.Conexion))
@@ -125,6 +136,11 @@ namespace APIBomberos.Clases
                         {
                             respuesta.Estado = read.GetBoolean(0);
                             respuesta.Mensaje = read.GetString(1);
+
+                            if (read.FieldCount > 2)
+                            {
+                                respuesta.IDUsuario = read.GetInt32(2);
+                            }
                         }
                         catch (Exception ex)
                         {
