@@ -18,7 +18,6 @@ namespace APIBomberos.Clases
         public string apellido { get; set; }
         public string correo { get; set; }
         public string dpi { get; set; }
-        public string contraseña { get; set; }
 
 
 
@@ -41,7 +40,6 @@ namespace APIBomberos.Clases
                     da.SelectCommand.Parameters.AddWithValue("@Apellido", apellido);
                     da.SelectCommand.Parameters.AddWithValue("@Correo ", correo);
                     da.SelectCommand.Parameters.AddWithValue("@DPI", dpi);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", contraseña);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
@@ -87,7 +85,6 @@ namespace APIBomberos.Clases
                     da.SelectCommand.Parameters.AddWithValue("@Apellido", apellido);
                     da.SelectCommand.Parameters.AddWithValue("@Correo ", correo);
                     da.SelectCommand.Parameters.AddWithValue("@DPI", dpi);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", null);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
@@ -134,7 +131,6 @@ namespace APIBomberos.Clases
                     da.SelectCommand.Parameters.AddWithValue("@Apellido", null);
                     da.SelectCommand.Parameters.AddWithValue("@Correo ", null);
                     da.SelectCommand.Parameters.AddWithValue("@DPI", null);
-                    da.SelectCommand.Parameters.AddWithValue("@Contraseña ", null);
                     da.SelectCommand.CommandTimeout = 30;
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader read = da.SelectCommand.ExecuteReader();
