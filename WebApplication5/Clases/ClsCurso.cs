@@ -78,8 +78,8 @@ namespace APIBomberos.Clases
                     da.SelectCommand = new SqlCommand("[USP_SET_CURSO]", conn);
                     da.SelectCommand.Parameters.AddWithValue("@TipoOperacion", "U");
                     da.SelectCommand.Parameters.AddWithValue("@IdCurso", idcurso);
-                    da.SelectCommand.Parameters.AddWithValue("@Nombre", nombre);
-                    da.SelectCommand.Parameters.AddWithValue("@Descripcion", descripcion);
+                    da.SelectCommand.Parameters.AddWithValue("@Nombre", null);
+                    da.SelectCommand.Parameters.AddWithValue("@Descripcion", null);
                     da.SelectCommand.Parameters.AddWithValue("@Fecha_inicio", fechaini);
                     da.SelectCommand.Parameters.AddWithValue("@Fecha_fin", fechafin);
                     da.SelectCommand.CommandTimeout = 30;
