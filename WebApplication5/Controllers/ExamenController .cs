@@ -14,5 +14,13 @@ namespace APIBomberos.Controllers
 
             return this.Content(new ClsExamen().MostrarExamen(usuario, idtema), "application/json", System.Text.Encoding.UTF8);
         }
+
+
+        [HttpPost("AgregarExamenUsu")]
+        public ActionResult<object> setDatosServidor([FromBody] ClsExamen agregar)
+        {
+            return this.Content(JsonSerializer.Serialize(agregar.ingresarexamen()), "application/json", System.Text.Encoding.UTF8);
+        }
+
     }
 }
