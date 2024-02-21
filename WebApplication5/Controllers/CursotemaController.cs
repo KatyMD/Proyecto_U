@@ -18,6 +18,13 @@ namespace APIBomberos.Controllers
             return this.Content(JsonSerializer.Serialize(agregar.AgregarCursotema()), "application/json", System.Text.Encoding.UTF8);
         }
 
+        [HttpPut("ActualizarCursotema")]
+        public ActionResult<object> setDasettosServidor([FromBody] Clscursotema actualiza)
+        {
+            return this.Content(JsonSerializer.Serialize(actualiza.ActualizarCursotema()), "application/json", System.Text.Encoding.UTF8);
+        }
+
+
         [HttpPut("EstadoCursotema")]
         public ActionResult<object> setDatServidor([FromBody] Clscursotema estado)
         {
